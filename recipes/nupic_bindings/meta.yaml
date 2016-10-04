@@ -1,0 +1,46 @@
+{% set name = "nupic.bindings" %}
+{% set version = "0.4.9" %}
+{% set sha256 = "" %}
+
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+
+test:
+  imports:
+    - simplejson
+
+about:
+  home: http://github.com/nupic/core
+  license: AGPLv3
+  license_file: LICENSE
+  summary: 'Bindings for NuPIC'
+
+  description: |
+    simplejson is a simple, fast, complete, correct and extensible
+    JSON <http://json.org> encoder and decoder for Python 2.5+ and
+    Python 3.3+. It is pure Python code with no dependencies, but includes
+    an optional C extension for a serious speed boost.
+  doc_url: http://simplejson.readthedocs.io/
+  dev_url: https://github.com/nupic/core
+
+extra:
+  recipe-maintainers:
+    - souravsingh
